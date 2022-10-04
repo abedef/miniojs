@@ -1,6 +1,7 @@
 {
   "name": "@genieindex/miniojs",
   "version": "1.0.0",
+  "type": "module",
   "description": "Javascript MinIO wrapper",
   "main": "index.js",
   "scripts": {
