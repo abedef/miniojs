@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Javascript MinIO wrapper",
-  "main": "index.js",
+  "main": "main.js",
+  "types": "main.d.ts",
   "repository": {
     "type": "git",
     "url": "gitlab:genieindex/miniojs"
