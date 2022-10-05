@@ -1,6 +1,7 @@
 import { Client } from 'minio';
+import { Readable } from 'stream';
 
-var client = nil;
+var client;
 var hasBeenConfigured = false;
 var Endpoint, UseSSL, AccessKey, SecretKey;
 
