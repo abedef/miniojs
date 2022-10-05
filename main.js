@@ -2,16 +2,15 @@ import { Client } from 'minio';
 import { Readable } from 'stream';
 
 var client;
-var hasBeenConfigured = false;
-var Endpoint, UseSSL, AccessKey, SecretKey;
+var config;
 
 export function configure(endpoint, useSSL, accessKey, secretKey) {
-    Endpoint = endpoint;
-    UseSSL = useSSL;
-    AccessKey = accessKey;
-    SecretKey = secretKey;
-
-    hasBeenConfigured = true;
+    config = {
+        endpoint,
+        useSSL,
+        accessKey,
+        secretKey,
+    };
 }
 
 function getClient() {
@@ -19,15 +18,15 @@ function getClient() {
         return client;
     }
 
-    if (!hasBeenConfigured) {
+    if (!config) {
         throw "FUCK";
     }
 
     let minioClient = new Client({
-        endPoint: Endpoint,
-        useSSL: UseSSL,
-        accessKey: AccessKey,
-        secretKey: SecretKey,
+        endPoint: config.endpoint,
+        useSSL: config.useSSL,
+        accessKey: config.accessKey,
+        secretKey: config.secretKey,
     });
 
     return minioClient;
@@ -35,7 +34,7 @@ function getClient() {
 
 export function putString(path, text) {
     let stream = Readable.from(text);
-    return getClient().putObject("stats", path + ".txt", stream, { "Content-Type": "plain/text" });
+    return getClient().putObject("stats", path + ".txt", stream, { "Content-Type": "text/plain" });
 }
 
 export function putObject(path, obj) {
