@@ -4,19 +4,15 @@
   "type": "module",
   "description": "Javascript MinIO wrapper",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/genieindex/miniojs.git"
+    "url": "gitlab:genieindex/miniojs"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/genieindex/miniojs/issues"
   },
-  "homepage": "https://gitlab.com/genieindex/miniojs#readme",
+  "homepage": "https://gitlab.com/genieindex/miniojs",
   "dependencies": {
     "minio": "^7.0.32"
   }

@@ -4,7 +4,7 @@ var client = nil;
 var hasBeenConfigured = false;
 var Endpoint, UseSSL, AccessKey, SecretKey;
 
-exports.configure = function configure(endpoint, useSSL, accessKey, secretKey) {
+export function configure(endpoint, useSSL, accessKey, secretKey) {
     Endpoint = endpoint;
     UseSSL = useSSL;
     AccessKey = accessKey;
@@ -32,23 +32,23 @@ function getClient() {
     return minioClient;
 }
 
-exports.putString = function putString(path, text) {
+export function putString(path, text) {
     let stream = Readable.from(text);
     return getClient().putObject("stats", path + ".txt", stream, { "Content-Type": "plain/text" });
 }
 
-function putObject(path, obj) {
+export function putObject(path, obj) {
     let text = JSON.stringify(obj);
     let stream = Readable.from(text);
     return getClient().putObject("stats", path + ".json", stream, { "Content-Type": "application/json" });
 }
 
-function getString(path) {
+export function getString(path) {
     // TODO: Catch errors
     return getClient().getObject("stats", path + ".txt");
 }
 
-function getObject(path) {
+export function getObject(path) {
     // TODO: Catch errors
     return getClient().getObject("stats", path + ".json")
         .then((object) => JSON.parse(object.read()));
